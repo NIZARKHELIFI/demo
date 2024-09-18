@@ -1,0 +1,45 @@
+<mvc:View 
+	controllerName="ns.reservationfiori.controller.App"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:tnt="sap.tnt"
+	height="100%"
+	xmlns:f="sap.f">
+		<tnt:ToolPage id="toolPage" sideExpanded="true">      
+
+	<tnt:sideContent>
+			<tnt:SideNavigation id="side" expanded="true" selectedKey="{biatMenu>/selectedKey}">
+				<tnt:NavigationList items="{ path: 'biatMenu>/navigation'}">
+					<tnt:NavigationListItem text="{path: 'biatMenu>titleI18nKey', formatter: '.getBundleText'}" icon="{biatMenu>icon}" expanded="{biatMenu>expanded}"
+						items="{ path: 'biatMenu>items', templateShareable: false }"  key="{biatMenu>key}" select="onItemSelect">
+						<tnt:NavigationListItem text="{path: 'biatMenu>titleI18nKey', formatter: '.getBundleText'}" key="{biatMenu>key}" select="onItemSelect">
+						</tnt:NavigationListItem>
+					</tnt:NavigationListItem>
+				</tnt:NavigationList>
+
+				<tnt:fixedItem>
+					<tnt:NavigationList
+						items="{
+							path: 'biatMenu>/fixedNavigation',
+							templateShareable: false
+						}">
+						<tnt:NavigationListItem
+							text="{path: 'biatMenu>titleI18nKey', formatter: '.getBundleText'}"
+							icon="{biatMenu>icon}"
+							key="{biatMenu>key}"
+							>
+							<!-- href="#/{biatMenu>key}" -->
+						</tnt:NavigationListItem>
+					</tnt:NavigationList>
+				</tnt:fixedItem>
+
+
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		
+<tnt:mainContents>
+			<App id="mainContents"/>
+		</tnt:mainContents>
+</tnt:ToolPage>
+</mvc:View>

@@ -1,0 +1,62 @@
+{
+	"selectedKey": "",
+
+	"navigation": [{
+		"titleI18nKey": "sideContentHome",
+		"icon": "sap-icon://home",
+		"expanded": true,
+		"key": "home",
+		"visible": false,
+		"items": []
+	}, {
+		"titleI18nKey": "sideContentCreateReservation",
+		"icon": "sap-icon://write-new",
+		"expanded": true,
+		"key": "createReservation",
+		"visible": false,
+		"items": []
+	}, {
+		"titleI18nKey": "sideContentReservationStatus",
+		"icon": "sap-icon://document",
+		"expanded": true,
+		"key": "reservationStatus",
+		"visible": false,
+		"items": []
+	}, {
+		"titleI18nKey": "sideContentValidate",
+		"icon": "sap-icon://validate",
+		"expanded": true,
+		"key": "validateReservation",
+		"visible": false,
+		"items": []
+	}, {
+		"titleI18nKey": "sideContentMassCreate",
+		"icon": "sap-icon://create-form",
+		"expanded": true,
+		"key": "massReservation",
+		"visible": false,
+		"items": []
+	}],
+	"fixedNavigation": [
+		{
+			"titleI18nKey": "sideContentImportantLinks",
+			"icon": "sap-icon://chain-link",
+			"key": "importantLinks"
+		},
+		{
+			"titleI18nKey": "sideContentLegal",
+			"icon": "sap-icon://compare",
+			"key": "legal"
+		}
+	],
+	"masterSettings": [  {
+		"titleI18nKey": "sideContentSupplierSettings",
+		"key": "supplierSettings",
+		"selected": false
+	}, {
+		"titleI18nKey": "sideContentCampaignSettings",
+		"key": "campaignSettings",
+		"selected": false
+	}],
+	"bMenuCreated": false
+}
