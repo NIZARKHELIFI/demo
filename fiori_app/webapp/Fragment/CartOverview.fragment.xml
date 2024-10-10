@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ResponsivePopover placement="Bottom" contentWidth="35%" title="Liste des articles" class="sapUiContentPadding" initialFocus="Fermer">
+		<Table sticky="HeaderToolbar,ColumnHeaders" inset="false" items="{ path: 'cartItems>/', sorter: { path: 'name' } }"
+			class="sapFDynamicPageAlignContent">
+			<!--<headerToolbar>-->
+			<!--	<Toolbar>-->
+			<!--		<Title text="Articles" level="H2"/>-->
+			<!--	</Toolbar>-->
+			<!--</headerToolbar>-->
+			<columns>
+				<Column popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet" hAlign="Center">
+					<Label text="Code" wrapping="true"/>
+				</Column>
+				<Column popinDisplay="Inline" width="20%" demandPopin="true" minScreenWidth="Tablet" hAlign="Center">
+					<Label text="Désignation"/>
+				</Column>
+				<Column popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet" hAlign="Center">
+					<Label text="Stock dispo Lot" wrapping="true"/>
+				</Column>
+				<Column popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet" hAlign="Center">
+					<Label text="Total HT Net" wrapping="true"/>
+				</Column>
+				<Column popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet" hAlign="Center">
+					<Label text="Total TTC Net" wrapping="true"/>
+				</Column>
+				<Column popinDisplay="Inline" demandPopin="true" minScreenWidth="Tablet" hAlign="Center">
+					<Label text="Quantité" wrapping="true"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{cartItems>Matnr}"/>
+						<Text text="{cartItems>Maktx}"/>
+						<ObjectNumber number="{parts: [{path: 'cartItems>Zstol'}], formatter: '.formatter.getValueStock'}" unit=""/>
+						<Text  text="{parts: [{path: 'cartItems>Zprhtt'}], formatter: '.formatter.getPriceValue'} dt" wrapping="true"/>
+						<Text  text="{parts: [{path: 'cartItems>Zprtt'}], formatter: '.formatter.getPriceValue'} dt" wrapping="true"/>
+						<!--<ObjectNumber number="{parts: [{path: 'cartItems>Zprhtt'}], formatter: '.formatter.getPriceValue'}" unit="dt"/>-->
+						<!--<ObjectNumber number="{parts: [{path: 'cartItems>Zprtt'}], formatter: '.formatter.getPriceValue'}" unit="dt"/>-->
+						<Text text="{cartItems>Zquan}"></Text>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<endButton>
+			<Button text="Fermer" press="handleClosePopoverPress"/>
+		</endButton>
+	</ResponsivePopover>
+</core:FragmentDefinition>

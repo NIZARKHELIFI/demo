@@ -1,0 +1,22 @@
+{
+    "articles": [
+        {
+            "MATNR": "000000000000190016",
+            "BISMT": "",
+            "MAKTX": "Test material",
+            "MATKL": "VAC1300",
+            "WGBEZ": "IEC - Progiciels",
+            "QUANTITY": "2",
+            "MEINS": "ST"
+        },
+        {
+            "MATNR": "000000000000190016",
+            "BISMT": "",
+            "MAKTX": "Test material 2222",
+            "MATKL": "NN2700",
+            "WGBEZ": "test desc",
+            "QUANTITY": "3",
+            "MEINS": "ST"
+        }
+    ]
+}

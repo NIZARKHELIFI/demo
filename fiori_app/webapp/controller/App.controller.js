@@ -11,78 +11,19 @@ sap.ui.define(
       _bExpanded: true,
       formatter: formatter,
       onInit: function () {
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        oRouter.getRoute("home").attachPatternMatched(this._onRouteMatched, this);
 
         this.userInfoModel = this.getOwnerComponent().getModel("userInfo");
         this.getView().setModel(this.userInfoModel, "userInfo");
 
-        this.oEventBus = this.getOwnerComponent().getEventBus();
-        this.getUserInfo(); 
-
-        // if (!this.getOwnerComponent().getModel("biatMenu").getProperty("/bMenuCreated")) {
-          this._createLaunchpadMenu();
-        // }
-
+        this.oEventBus = this.getOwnerComponent().getEventBus();        
+        this._createLaunchpadMenu();
       },
 
-      getUserInfo: function () {
+      _onRouteMatched: function (oEvent) {
 
-        var sUrl = this.getBaseURL() + "/user-api/currentUser";
-        var oModel = new JSONModel();
-
-        var oMock = {
-          firstname: "Malek",
-          lastname: "TLILI",
-          email: "malek.tlili@aymax.fr",
-          name: "malek.tlili@aymax.fr",
-          displayName: "Malek TLILI (malek.tlili@aymax.fr)"
-        };
-
-        oModel.loadData(sUrl);
-        oModel.dataLoaded()
-          .then(() => {
-            //check if data has been loaded
-            //for local testing, set mock data
-            if (!oModel.getProperty("/email")) {
-              this.userInfoModel.setProperty("/userInfo", oMock);
-            } else {
-              this.userInfoModel.setProperty("/userInfo", oModel.getData());
-            }
-
-            var oUserInfoJobConfig = {
-              jobId: AppConstants.Z_USER_INFO_EVENT,
-              successfn: this.fnUserInfoSuccess.bind(this),
-              errorfn: this.fnUserInfoError.bind(this),
-              finishEvent: AppConstants.RUN_JOB_EVENT,
-              jobChannel: AppConstants.JOB_CHANNEL,
-              email: this.userInfoModel.getProperty("/userInfo/email")
-            };
-
-            this.oEventBus.publish(AppConstants.JOB_CHANNEL, AppConstants.RUN_JOB_EVENT, oUserInfoJobConfig);
-
-          })
-          .catch(() => {
-            this.userInfoModel.setProperty("/userInfo", oMock);
-          });
-      },
-
-      fnUserInfoSuccess: function (oResponse, oData) {
-        var oCustomAttributes = {
-          purchasingGroup: oResponse.purchasingGroup,
-          position: oResponse.position
-        };
-        this.userInfoModel.setProperty("/customAttributes", oCustomAttributes);
-      },
-
-      fnUserInfoError: function (oResponse, oError) {
-
-      },
-
-      getBaseURL: function () {
-        var appId = this.getOwnerComponent().getManifestEntry("/sap.app/id");
-        var appPath = appId.replaceAll(".", "/");
-        var appModulePath = jQuery.sap.getModulePath(appPath);
-        return appModulePath;
-      },
+      },   
 
       _getRenderer: function () {
         var oDeferred = new jQuery.Deferred();
@@ -141,6 +82,7 @@ sap.ui.define(
       },
 
       onItemSelect: function (oEvent) {
+        // Route name : this.getOwnerComponent().getRouter().getHashChanger().getHash()
         var sKey = oEvent.getSource().getKey();
         this.getRouter().navTo(sKey);
       },

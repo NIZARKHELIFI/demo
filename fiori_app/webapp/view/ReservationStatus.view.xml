@@ -1,4 +1,4 @@
-<mvc:View controllerName="ns.reservationfiori.controller.App"
+<mvc:View controllerName="ns.reservationfiori.controller.ReservationStatus"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"
 	displayBlock="true">
@@ -6,7 +6,7 @@
 		class="sapUiContentPadding">
 		<content>
 		
-			<Text text="This is the createReservation page "/>
+			<Text text="This is the ReservationStatus page "/>
 		</content>
 	</Page>
 </mvc:View>

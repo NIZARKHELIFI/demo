@@ -20,6 +20,14 @@ sap.ui.define([
 			return v;
 
 		},
+
+		getCostCenterStatus: function(sDept){
+			// var oComboBox = sap.ui.core.Fragment.byId("CCMagasin", "id_cost_center");
+			// sDept === "G01" ? oComboBox.setSelectedKey("interne"): "";
+			// return sDept === "G01" ? false : true;
+			return true;
+
+		},
 		getClient: function (sClientType, sMatr, sCin) {
 			if (sClientType === "X") {
 				return "CIN :" + sCin;

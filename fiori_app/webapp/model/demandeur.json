@@ -1,0 +1,31 @@
+{
+    "costCenter": [
+        {
+            "key": "cc01",
+            "name": "interne",
+            "selected": ""
+        },
+        {
+            "key": "cc02",
+            "name": "externe",
+            "selected": ""
+        },
+        {
+            "key": "cc03",
+            "name": "others",
+            "selected": ""
+        }
+    ],
+    "transferingStore": [
+        {
+            "lgort": "M010",
+            "lgobe": "magasin 10",
+            "selected": ""
+        },
+        {
+            "lgort": "M020",
+            "lgobe": "magasin 20",
+            "selected": ""
+        }
+    ]
+}

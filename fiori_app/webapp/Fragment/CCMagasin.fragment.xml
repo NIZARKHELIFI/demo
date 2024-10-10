@@ -1,0 +1,55 @@
+<core:FragmentDefinition height="100%" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns="sap.m" xmlns:u="sap.ui.unified" id="id_applicant_fragment">
+	<Dialog id="id_chooseApplicant" title="{i18n>chooseApplicant}" contentHeight="auto" contentWidth="45%"
+		draggable="true" resizable="true">
+		<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
+			<f:content>
+				<Label text="{i18n>CostCenter}" labelFor="CostCenter" class="sapUiTinyMargin" required="true" />
+				<Input id="id_cost_center" textFormatMode="KeyValue" value="{demandeur>/costCenter/0/Value}"
+					showSuggestion="true" showValueHelp="false" selectedKey="{demandeur>costCenter}"
+					valueHelpRequest=".onValueHelpCostCenterRequest"
+					suggestionItems="{ path: 'demandeur>/costCenter' , sorter: { path: 'name' } }"
+					suggestionItemSelected=".onSuggestionCostCenterItemSelected">
+				<suggestionItems>
+					<core:ListItem key="{demandeur>Key}" text="{demandeur>Value}" />
+				</suggestionItems>
+				</Input>
+
+				<!-- <Label text="{i18n>CostCenter}" class="sapUiTinyMargin" required="true"/>
+				<Select id="id_cost_center1" change="onRequiredChange" 
+				enabled="{parts: [{path: 'userInfo>/customAttributes/departement'}], formatter: '.formatter.getCostCenterStatus'}" 
+				liveChange="onOrganisationChange" items="{ path: 'demandeur>/costCenter' , sorter: { path: 'name' } }"
+					required="true" selectedKey="{demandeur>/costCenter/selected}" forceSelection="true">
+					<core:Item  key="{demandeur>costCenter}" text="{demandeur>costDesc}"/>
+				</Select> -->
+
+				<Label text="{i18n>TransferingStore}" class="sapUiTinyMargin" required="true" />
+				<Input id="id_store" textFormatMode="KeyValue" value="{demandeur>/magasinCedant/0/Value}"
+					showSuggestion="true" showValueHelp="false" selectedKey="{demandeur>magasinCedant}"
+					valueHelpRequest=".onValueHelpmagasinCedantRequest"
+					suggestionItems="{ path: 'demandeur>/magasinCedant' , sorter: { path: 'name' } }"
+					suggestionItemSelected=".onSuggestionmagasinCedantItemSelected">
+				<suggestionItems>
+					<core:ListItem key="{demandeur>Key}" text="{demandeur>Value}" />
+				</suggestionItems>
+				</Input>
+
+				<!-- <Select id="id_store" change="onRequiredChange" enabled="true" liveChange="onAgenceChange" 
+				items="{ path: 'demandeur>/magasinCedant', sorter: { path: 'lgobe' } }"
+					required="true" forceSelection="true">
+					<core:Item key="{demandeur>Key}" text="{demandeur>Value}"/>
+				</Select> -->
+			</f:content>
+		</f:SimpleForm>
+
+
+		<beginButton>
+			<Button id="id_btn_Interrompre" icon="sap-icon://decline" press="onPressCloseApplicantPage"
+				text="{i18n>AnnulerChooseApplicant}"></Button>
+		</beginButton>
+		<endButton>
+			<Button id="id_btn_Confirme" icon="sap-icon://accept" press="onPressConfirmeApplicant"
+				text="{i18n>ConfirmerChooseApplicant}"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

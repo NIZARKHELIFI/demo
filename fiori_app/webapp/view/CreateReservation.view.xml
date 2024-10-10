@@ -1,0 +1,155 @@
+<mvc:View controllerName="ns.reservationfiori.controller.CreateReservation" height="100%" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:f="sap.f" xmlns:layout="sap.ui.layout" xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:svm="sap.ui.comp.smartvariants">
+	<f:DynamicPage showFooter="true">
+
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="Création des Réservations" wrapping="true" />
+				</f:heading>
+				<f:content>
+
+					<FlexBox alignItems="End" justifyContent="End">
+						<Button icon="sap-icon://delete" class="sapUiSmallMarginEnd" type="Emphasized"
+							visible="{= ${ViewModel>/Mode} === 'stCmd' ? false : true}" text="Vider le panier"
+							press="onDeleteCart">
+
+						</Button>
+						<Button id="cart" icon="sap-icon://cart" class="sapUiSmallMarginEnd" type="Emphasized"
+							tooltip="{i18n>Cart}" text="Panier" iconFirst="false" press=".handleCartShow">
+							<customData>
+								<BadgeCustomData key="badge"
+									value="{parts: [{path: 'OrderModel>/Znbrl'}], formatter: '.formatter.getCartLength'}"
+									visible="true" />
+							</customData>
+							<dependents>
+								<core:Fragment fragmentName="ns.reservationfiori.Fragment.CartOverview" type="XML" />
+							</dependents>
+						</Button>
+					</FlexBox>
+
+				</f:content>
+			</f:DynamicPageTitle>
+		</f:title>
+
+
+		<f:header>
+			<f:DynamicPageHeader>
+				<f:content>
+
+					<fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".onSearch"
+						filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+						<fb:filterGroupItems>
+
+
+							<fb:FilterGroupItem name="Code article" label="Code article" groupName="Group1"
+								visibleInFilterBar="true">
+								<fb:control>
+									<Input id="id_code_article" textFormatMode="KeyValue" placeholder="Code Article"
+										showSuggestion="true" showValueHelp="false" selectedKey="{CodeArticleModel}"
+										suggestionItems="{ path: 'CodeArticleModel>/' , sorter: { path: 'Value' } }"
+										liveChange="onCodeArticleSuggestions"
+										suggestionItemSelected=".onSuggestionCodeArticleItemSelected">
+									<suggestionItems>
+										<core:ListItem key="{CodeArticleModel>Key}" text="{CodeArticleModel>Value}" />
+									</suggestionItems>
+									</Input>
+								</fb:control>
+							</fb:FilterGroupItem>
+
+
+							<fb:FilterGroupItem name="Groupe marchandise" label="Groupe marchandise" groupName="Group1"
+								visibleInFilterBar="true">
+								<fb:control>
+									<Input id="id_groupe_marchandise" textFormatMode="KeyValue" placeholder="Groupe marchandise"
+									showSuggestion="true" showValueHelp="false" selectedKey="{GroupeMarchandiseModel}"
+									suggestionItems="{ path: 'GroupeMarchandiseModel>/' , sorter: { path: 'Value' } }"
+									liveChange="onGroupeMarchandiseSuggestions"
+									suggestionItemSelected=".onSuggestionGroupeMarchandiseItemSelected">
+								<suggestionItems>
+									<core:ListItem key="{GroupeMarchandiseModel>Key}" text="{GroupeMarchandiseModel>Value}" />
+								</suggestionItems>
+								</Input>
+									
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="Ancien code article" label="Ancien Code Article" groupName="Group1"
+								visibleInFilterBar="true">
+								<fb:control>
+									<Input id="id_Ancien_CodeArticle" textFormatMode="KeyValue" placeholder="Ancien Code Article"
+									showSuggestion="true" showValueHelp="false" selectedKey="{AncienCodeArticleModel}"
+									suggestionItems="{ path: 'AncienCodeArticleModel>/' , sorter: { path: 'Value' } }"
+									liveChange="onAncienCodeArticleSuggestions"
+									suggestionItemSelected=".onSuggestionAncienCodeArticleItemSelected">
+								<suggestionItems>
+									<core:ListItem key="{AncienCodeArticleModel>Key}" text="{AncienCodeArticleModel>Value}" />
+								</suggestionItems>
+								</Input>
+								
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="Designationarticle" label="Désignation Article"
+								groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<Input id="id_Designation_Article" textFormatMode="KeyValue" placeholder="Désignation Article"
+									showSuggestion="true" showValueHelp="false" selectedKey="{DesignationArticleModel}"
+									suggestionItems="{ path: 'DesignationArticleModel>/' , sorter: { path: 'Value' } }"
+									liveChange="onDesignationArticleSuggestions"
+									suggestionItemSelected=".onSuggestionDesignationArticleItemSelected">
+								<suggestionItems>
+									<core:ListItem key="{DesignationArticleModel>Key}" text="{DesignationArticleModel>Value}" />
+								</suggestionItems>
+								</Input>
+									
+								</fb:control>
+							</fb:FilterGroupItem>
+						</fb:filterGroupItems>
+					</fb:FilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<Table id="table" inset="false" items="{
+						path: 'ArticlesModel>/'
+					}">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Code Article" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Ancien code article" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Désignation article" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Code magasin" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Statut du stock" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Groupe article" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="U.G" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Quantité" />
+					</Column>
+				</columns>
+
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<ObjectIdentifier title="{ArticlesModel>MATNR}" text="{ArticlesModel>MATNR}" />
+							<Text text="{ArticlesModel>BISMT}" />
+							<Text text="{ArticlesModel>MAKTX}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

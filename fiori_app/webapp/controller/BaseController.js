@@ -49,7 +49,11 @@ sap.ui.define([
 			return oResourceModel.getResourceBundle().then(function(oBundle){
 				return oBundle.getText(sI18nKey, aPlaceholderValues);
 			});
-		}
+		},
+		getCurrentRouteName: function (router = this.getOwnerComponent().getRouter()) {
+			const currentHash = router.getHashChanger().getHash();
+			return router.getRouteInfoByHash(currentHash).name;
+		  }
 	});
 
 });

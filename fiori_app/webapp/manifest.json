@@ -94,6 +94,9 @@
       },
       "userInfo": {
         "type": "sap.ui.model.json.JSONModel"
+      },
+      "demandeur": {
+        "type": "sap.ui.model.json.JSONModel"
       }
     },
     "resources": {
